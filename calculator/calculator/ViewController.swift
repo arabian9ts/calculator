@@ -9,13 +9,56 @@
 import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    @IBOutlet weak var ans: UILabel!
+    @IBOutlet weak var cellview: UICollectionView!
+    
+    let cellstr: [String] = [
+        "AC", "+/-", "%", "÷",
+        "7", "8", "9", "×",
+        "4", "5", "6", "-",
+        "1", "2", "3", "+",
+        "1", "2", "3", "="]
+    
+    let colors: [UIColor] = [
+        UIColor.black,
+        UIColor.blue,
+        UIColor.brown,
+        UIColor.clear,
+        UIColor.cyan
+    ]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ans.backgroundColor = UIColor.black
         let layout = UICollectionViewFlowLayout()
         
-//        layout.itemSize = CGSize(wifth: 90, height: 90)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
+        let celltop = ans.bounds.maxY
+        let rect = UIScreen.main.bounds
+        
+        let width = rect.maxX / 4
+        let height = (rect.maxY - celltop) / 5
+        
+        
+        layout.itemSize = CGSize(width: width, height: width)
+        
+        
+        layout.sectionInset = UIEdgeInsets(top: (height - width) * 4, left: 0, bottom: 0, right: 0);
+        
+        layout.headerReferenceSize = CGSize(width: 0, height: 0)
+        
+        cellview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        
+        layout.minimumLineSpacing = 0.0
+        layout.minimumInteritemSpacing = 0.0
+        
+        cellview.collectionViewLayout = layout
+        print(ans.bounds.maxY);
+        
+//        self.view.addSubview(cellview)
+//        self.view.addSubview(ans)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,19 +68,37 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     /** called when the cell is selected */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print("Num: \(indexPath.row)")
     }
     
     /** return number of cells */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 19;
+        return 20;
     }
     
-    /** set val in the cells */
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        
-//    }
+    /// 横のスペース
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        
+        return 0.0
+        
+    }
+    
+    /// 縦のスペース
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        
+        return 0.0
+        
+    }
 
-
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        
+        cell.backgroundColor = colors[indexPath.row % colors.count]
+        
+//        cell.val!.text = cellstr[indexPath.row]
+        
+        return cell;
+    }
 }
 
