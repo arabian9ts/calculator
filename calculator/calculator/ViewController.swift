@@ -18,7 +18,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         "7", "8", "9", "×",
         "4", "5", "6", "-",
         "1", "2", "3", "+",
-        "1", "2", "3", "="]
+        "00", "0", ".", "="]
     
     let colors: [UIColor] = [
         UIColor.black,
@@ -40,6 +40,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let width = rect.maxX / 4
         let height = (rect.maxY - celltop) / 5
         
+        print(width)
+        
         
         layout.itemSize = CGSize(width: width, height: width)
         
@@ -48,13 +50,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         layout.headerReferenceSize = CGSize(width: 0, height: 0)
         
-        cellview.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        cellview.register(CalcCell.self, forCellWithReuseIdentifier: "cell")
         
         layout.minimumLineSpacing = 0.0
         layout.minimumInteritemSpacing = 0.0
         
         cellview.collectionViewLayout = layout
-        print(ans.bounds.maxY);
         
 //        self.view.addSubview(cellview)
 //        self.view.addSubview(ans)
@@ -93,10 +94,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+
+        
+        if let ccll = cell as? CalcCell {
+            ccll.val?.text = cellstr[indexPath.row]
+        }
         
         cell.backgroundColor = colors[indexPath.row % colors.count]
-        
-//        cell.val!.text = cellstr[indexPath.row]
         
         return cell;
     }
