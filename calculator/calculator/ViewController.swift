@@ -21,7 +21,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         "00", "0", ".", "="]
     
     let colors: [UIColor] = [
-        UIColor.black,
+        UIColor.green,
         UIColor.blue,
         UIColor.brown,
         UIColor.clear,
@@ -34,19 +34,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         ans.backgroundColor = UIColor.black
         let layout = UICollectionViewFlowLayout()
         
-        let celltop = ans.bounds.maxY
         let rect = UIScreen.main.bounds
         
         let width = rect.maxX / 4
-        let height = (rect.maxY - celltop) / 5
+        let ans_height = rect.maxY - width * 5
         
-        print(width)
+        ans.frame = CGRect(x: 0, y: 0, width: rect.maxX, height: ans_height)
         
         
         layout.itemSize = CGSize(width: width, height: width)
         
         
-        layout.sectionInset = UIEdgeInsets(top: (height - width) * 4, left: 0, bottom: 0, right: 0);
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
         
         layout.headerReferenceSize = CGSize(width: 0, height: 0)
         

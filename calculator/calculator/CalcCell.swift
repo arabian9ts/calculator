@@ -23,7 +23,6 @@ class CalcCell: UICollectionViewCell {
         val = UILabel(frame: CGRect(x:0, y:0, width:frame.width, height:frame.height))
         
         val?.text = "nil"
-        val?.backgroundColor = UIColor.white
         val?.textAlignment = NSTextAlignment.center
         
         // Cellに追加.
