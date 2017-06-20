@@ -31,18 +31,26 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // set label's background
         ans.backgroundColor = UIColor.black
+        
+        // layout has collectionview
         let layout = UICollectionViewFlowLayout()
+        
+        // placing parameters
         let rect = UIScreen.main.bounds
         let header: CGFloat = 30;
         let size = rect.maxX / 4
         
+        // set cell placement
         layout.itemSize = CGSize(width: size, height: size)
         layout.sectionInset = UIEdgeInsets(top: header, left: 0, bottom: 0, right: 0);
         
+        // cell space set to zeros
         layout.minimumLineSpacing = 0.0
         layout.minimumInteritemSpacing = 0.0
  
+        // apply layout
         cellview.register(CalcCell.self, forCellWithReuseIdentifier: "cell")
         cellview.collectionViewLayout = layout
     
@@ -50,7 +58,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     /** called when the cell is selected */
@@ -64,20 +71,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return 20;
     }
     
-    /// 横のスペース
+    /** space width */
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         
         return 0.0
         
     }
     
-    /// 縦のスペース
+    /** space height */
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         
         return 0.0
         
     }
 
+    /** cell setting */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)

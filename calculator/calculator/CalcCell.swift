@@ -19,13 +19,13 @@ class CalcCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        // UILabelを生成.
+        // create label
         val = UILabel(frame: CGRect(x:0, y:0, width:frame.width, height:frame.height))
         
         val?.text = "nil"
         val?.textAlignment = NSTextAlignment.center
         
-        // Cellに追加.
+        // add label to the cell
         if let subview: UILabel = val {
             self.contentView.addSubview(subview)
         }
