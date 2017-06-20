@@ -51,7 +51,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         layout.minimumInteritemSpacing = 0.0
  
         // apply layout
-        cellview.register(CalcCell.self, forCellWithReuseIdentifier: "cell")
+        //cellview.register(CalcCell.self, forCellWithReuseIdentifier: "cell")
         cellview.collectionViewLayout = layout
     
     }
@@ -92,7 +92,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
         
         if let ccll = cell as? CalcCell {
-            ccll.val?.text = cellstr[indexPath.row]
+//            ccll.val?.text = cellstr[indexPath.row]
+            ccll.setup(cellstr[indexPath.row])
         }
         
         cell.backgroundColor = colors[indexPath.row % colors.count]

@@ -10,29 +10,14 @@ import UIKit
 
 class CalcCell: UICollectionViewCell {
     
-    var val: UILabel?
+//    var val: UILabel?
+    @IBOutlet weak var symbol: UILabel!
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        // create label
-        val = UILabel(frame: CGRect(x:0, y:0, width:frame.width, height:frame.height))
-        
-        val?.text = "nil"
-        val?.textAlignment = NSTextAlignment.center
-        
-        // add label to the cell
-        if let subview: UILabel = val {
-            self.contentView.addSubview(subview)
-        }
-        else{
-            print("subview is nil\n")
-        }
-        
+    func setup(_ symbol: String) {
+        self.symbol.text = symbol
     }
-    
 }
