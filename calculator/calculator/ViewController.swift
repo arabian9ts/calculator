@@ -33,32 +33,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         ans.backgroundColor = UIColor.black
         let layout = UICollectionViewFlowLayout()
-        
         let rect = UIScreen.main.bounds
+        let header: CGFloat = 30;
+        let size = rect.maxX / 4
         
-        let width = rect.maxX / 4
-        let ans_height = rect.maxY - width * 5
-        
-        ans.frame = CGRect(x: 0, y: 0, width: rect.maxX, height: ans_height)
-        
-        
-        layout.itemSize = CGSize(width: width, height: width)
-        
-        
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
-        
-        layout.headerReferenceSize = CGSize(width: 0, height: 0)
-        
-        cellview.register(CalcCell.self, forCellWithReuseIdentifier: "cell")
+        layout.itemSize = CGSize(width: size, height: size)
+        layout.sectionInset = UIEdgeInsets(top: header, left: 0, bottom: 0, right: 0);
         
         layout.minimumLineSpacing = 0.0
         layout.minimumInteritemSpacing = 0.0
-        
+ 
+        cellview.register(CalcCell.self, forCellWithReuseIdentifier: "cell")
         cellview.collectionViewLayout = layout
-        
-//        self.view.addSubview(cellview)
-//        self.view.addSubview(ans)
-        
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,6 +56,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     /** called when the cell is selected */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Num: \(indexPath.row)")
+        print(collectionView.bounds.maxY)
     }
     
     /** return number of cells */
