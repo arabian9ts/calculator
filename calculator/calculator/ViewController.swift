@@ -13,6 +13,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var ans: UILabel!
     @IBOutlet weak var cellview: UICollectionView!
     
+    var first: Double! = 0.0
+    var second: Double! = 0.0
+    var last_symbol: String! = ""
+    
     let cellstr: [String] = [
         "AC", "+/-", "%", "÷",
         "7", "8", "9", "×",
@@ -33,6 +37,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         // set label's background
         ans.backgroundColor = UIColor.black
+        ans.textColor = UIColor.white
+        ans.text = "0"
         
         // layout has collectionview
         let layout = UICollectionViewFlowLayout()
@@ -60,29 +66,66 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.didReceiveMemoryWarning()
     }
     
+    func format(_ number: Double) -> String {
+        var formed: String = ""
+        
+        if number - Double(Int(number)) == 0{
+            formed = String(Int(number))
+        }
+        else{
+            formed = String(number)
+        }
+        
+        return formed
+    }
+    
+    func reset() -> Void {
+        second = 0.0
+        ans.text = format(first)
+    }
+    
+    func calculate(_ command: String) -> Double {
+        switch command {
+        case "+":
+            return first + second
+        case "-":
+            return first - second
+        case "×":
+            return first * second
+        case "÷":
+            return first / second
+        default:
+            return second
+        }
+    }
+    
     /** called when the cell is selected */
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
-        print(collectionView.bounds.maxY)
+        switch cellstr[indexPath.row] {
+            
+        case "+", "-", "×", "÷":
+            first = calculate(last_symbol)
+            reset()
+            last_symbol = cellstr[indexPath.row]
+            print("first is \(first)")
+            
+        case "=":
+            ans.text = String(0)
+            first = 0.0
+            second = 0.0
+            last_symbol = ""
+            
+        default:
+            let linked: Double! = Double(format(second) + cellstr[indexPath.row])
+            ans.text = format(linked)
+            second = linked
+        }
+        
     }
     
     /** return number of cells */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 20;
-    }
-    
-    /** space width */
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        
-        return 0.0
-        
-    }
-    
-    /** space height */
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        
-        return 0.0
-        
     }
 
     /** cell setting */

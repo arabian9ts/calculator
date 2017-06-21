@@ -24,7 +24,7 @@
                             <stackView opaque="NO" tag="1" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9vB-di-Zbd">
                                 <rect key="frame" x="0.0" y="172" width="375" height="495"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yUG-3Z-i5y">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yUG-3Z-i5y">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="495"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="dlm-vr-anc">
@@ -34,14 +34,14 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" restorationIdentifier="cell" reuseIdentifier="cell" id="F7t-4L-dxg" customClass="CalcCell" customModule="calculator" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell" reuseIdentifier="cell" id="F7t-4L-dxg" customClass="CalcCell" customModule="calculator" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="symbol" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gJ-vD-j56" userLabel="symbol">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="symbol" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gJ-vD-j56" userLabel="symbol">
                                                             <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="symbol">
                                                                 <accessibilityTraits key="traits" button="YES" staticText="YES"/>
@@ -81,6 +81,7 @@
                                         </connections>
                                     </collectionView>
                                 </subviews>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 <constraints>
                                     <constraint firstItem="yUG-3Z-i5y" firstAttribute="leading" secondItem="9vB-di-Zbd" secondAttribute="leading" id="CAx-sv-Nge"/>
                                     <constraint firstAttribute="trailing" secondItem="yUG-3Z-i5y" secondAttribute="trailing" id="STF-G9-P5x"/>
@@ -88,7 +89,7 @@
                                     <constraint firstItem="yUG-3Z-i5y" firstAttribute="top" secondItem="9vB-di-Zbd" secondAttribute="top" id="uNS-uT-eNu"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ans" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-Bs-5PX" userLabel="ans">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ans" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-Bs-5PX" userLabel="ans">
                                 <rect key="frame" x="0.0" y="30" width="375" height="172"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="172" id="eHD-tX-QgP"/>
@@ -96,9 +97,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                         <constraints>
                             <constraint firstItem="aT8-Bs-5PX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2UC-0u-oin"/>
                             <constraint firstItem="9vB-di-Zbd" firstAttribute="top" secondItem="aT8-Bs-5PX" secondAttribute="bottom" constant="-30" id="5a6-yf-boV"/>
