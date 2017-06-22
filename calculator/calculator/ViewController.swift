@@ -57,7 +57,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         layout.minimumInteritemSpacing = 0.0
  
         // apply layout
-        //cellview.register(CalcCell.self, forCellWithReuseIdentifier: "cell")
+        //cellview.register(CustomCell.self, forCellWithReuseIdentifier: "custom")
+        let nib = UINib(nibName: "CustomCell", bundle: nil)
+        cellview.register(nib, forCellWithReuseIdentifier: "custom")
         cellview.collectionViewLayout = layout
     
     }
@@ -131,13 +133,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     /** cell setting */
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell: CustomCell = collectionView.dequeueReusableCell(withReuseIdentifier: "custom", for: indexPath) as! CustomCell
 
-        
-        if let ccll = cell as? CalcCell {
 //            ccll.val?.text = cellstr[indexPath.row]
-            ccll.setup(cellstr[indexPath.row])
-        }
+//            ccll.setup(cellstr[indexPath.row])
+            cell.setLabel(cellstr[indexPath.row])
         
         cell.backgroundColor = colors[indexPath.row % colors.count]
         

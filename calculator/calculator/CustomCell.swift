@@ -9,10 +9,16 @@
 import UIKit
 
 class CustomCell: UICollectionViewCell {
+    
+    @IBOutlet weak var symbol: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        //symbol.text = "ini"
+    }
+    
+    func setLabel(_ str: String) {
+        symbol.text = str
     }
 
 }
