@@ -14,7 +14,6 @@ class CustomCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        //symbol.text = "ini"
     }
     
     func setLabel(_ str: String) {

@@ -55,9 +55,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // cell space set to zeros
         layout.minimumLineSpacing = 0.0
         layout.minimumInteritemSpacing = 0.0
- 
-        // apply layout
-        //cellview.register(CustomCell.self, forCellWithReuseIdentifier: "custom")
+        
+        // regist xib and set layout on cellview
         let nib = UINib(nibName: "CustomCell", bundle: nil)
         cellview.register(nib, forCellWithReuseIdentifier: "custom")
         cellview.collectionViewLayout = layout
@@ -134,10 +133,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: CustomCell = collectionView.dequeueReusableCell(withReuseIdentifier: "custom", for: indexPath) as! CustomCell
-
-//            ccll.val?.text = cellstr[indexPath.row]
-//            ccll.setup(cellstr[indexPath.row])
-            cell.setLabel(cellstr[indexPath.row])
+        
+        cell.setLabel(cellstr[indexPath.row])
         
         cell.backgroundColor = colors[indexPath.row % colors.count]
         
