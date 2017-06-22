@@ -13,8 +13,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var ans: UILabel!
     @IBOutlet weak var cellview: UICollectionView!
     
-    var first: Double! = 0.0
-    var second: Double! = 0.0
+    var first: Float! = 0.0
+    var second: Float! = 0.0
     var last_symbol: String! = ""
     
     let cellstr: [String] = [
@@ -67,10 +67,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.didReceiveMemoryWarning()
     }
     
-    func format(_ number: Double) -> String {
+    func format(_ number: Float) -> String {
         var formed: String = ""
         
-        if number - Double(Int(number)) == 0{
+        if number - Float(Int(number)) == 0{
             formed = String(Int(number))
         }
         else{
@@ -81,11 +81,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func reset() -> Void {
+        first = 0.0
         second = 0.0
+        last_symbol = ""
         ans.text = format(first)
     }
     
-    func calculate(_ command: String) -> Double {
+    func calculate(_ command: String) -> Float {
         switch command {
         case "+":
             return first + second
@@ -94,9 +96,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         case "×":
             return first * second
         case "÷":
-            return first / second
+            if second != 0.0 {
+                return first / second
+            }
+            else {
+                return 0.0
+            }
+        case "%":
+            return first.truncatingRemainder(dividingBy: second)
         default:
-            return second
+            return first + second
         }
     }
     
@@ -104,20 +113,29 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch cellstr[indexPath.row] {
             
-        case "+", "-", "×", "÷":
+        case "+", "-", "×", "÷", "%":
             first = calculate(last_symbol)
-            reset()
+            second = 0.0
             last_symbol = cellstr[indexPath.row]
-            print("first is \(first)")
+            ans.text = format(first)
             
         case "=":
-            ans.text = String(0)
-            first = 0.0
+            first = calculate(last_symbol)
             second = 0.0
+            ans.text = format(first)
             last_symbol = ""
             
+        case "+/-":
+            first = -Float(ans.text!)!
+            second = 0.0
+            ans.text = format(first)
+            last_symbol = ""
+            
+        case "AC":
+            reset()
+            
         default:
-            let linked: Double! = Double(format(second) + cellstr[indexPath.row])
+            let linked: Float! = Float(format(second) + cellstr[indexPath.row])
             ans.text = format(linked)
             second = linked
         }
